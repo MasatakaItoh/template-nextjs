@@ -1,19 +1,15 @@
 ---
 to: <%= path %>/<%= component_name %>.stories.tsx
 ---
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import React from "react";
+import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { ComponentProps } from "react";
 
 import { <%= component_name %> } from "./<%= component_name %>";
 
-export default {
-  component: <%= component_name %>,
-  parameters: {
-    controls: { expanded: true },
-  },
-} as ComponentMeta<typeof <%= component_name %>>;
+export default { component: <%= component_name %> } as ComponentMeta<typeof <%= component_name %>>;
 
-const Template: ComponentStory<typeof <%= component_name %>> = (args) => <<%= component_name %> {...args} />;
+type Story = ComponentStoryObj<typeof <%= component_name %>> & { args: ComponentProps<typeof <%= component_name %>> };
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  args: {},
+};
